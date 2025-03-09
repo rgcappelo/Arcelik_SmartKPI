@@ -434,4 +434,17 @@ permitiendo visualizar el equilibrio entre estos aspectos en la recomendación d
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # Tabla de datos
-st.markdown('<div class="sub-header">Datos
+st.markdown('<div class="sub-header">Datos Detallados</div>', unsafe_allow_html=True)
+# Formatear la tabla para mostrar
+display_df = filtered_df.copy()
+display_df["Fecha"] = display_df["Fecha"].dt.strftime('%Y-%m')
+display_df["NPS-E"] = display_df["NPS-E"].round(1)
+display_df = display_df[["Fecha", "NES", "RPS", "CPI", "NPS-E", "Categoría_NPS_E", "Tipo"]]
+st.dataframe(display_df, use_container_width=True)
+
+# Información adicional
+st.markdown("""
+<div class="info-text" style="text-align: center; margin-top: 30px;">
+<strong>Dashboard NPS-E Arçelik</strong> | Desarrollado para análisis de lealtad del cliente | © 2025
+</div>
+""", unsafe_allow_html=True)
